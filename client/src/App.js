@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css'; // Import your existing styles
+import './index.css'; 
 
 const App = () => {
   const [entries, setEntries] = useState([]);
   const [formData, setFormData] = useState({ name: '', phone: '', time: '', location: '', direction: 'To Airport', city: 'Bengaluru' });
   const [filter, setFilter] = useState({ datetime: '', range: '', direction: '', city: '' });
-  const [showModal, setShowModal] = useState(false); // State to manage modal visibility
-
+  const [showModal, setShowModal] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
   const fetchEntries = async () => {
     console.log('Fetching entries with filter:', filter);
     const response = await axios.get('https://cabbuddy.onrender.com/api/entries', { params: filter });
@@ -18,20 +18,21 @@ const App = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.name && formData.phone && formData.time && formData.location) {
+      setIsLoading(true);
       try {
         const response = await axios.post('https://cabbuddy.onrender.com/api/entries', formData);
         console.log('Entry added:', response.data);
 
-        // Clear the results table and form
         setEntries([]); 
         setFormData({ name: '', phone: '', time: '', location: '', direction: 'To Airport', city: 'Bengaluru' });
         
-        // Show the modal
         setShowModal(true);
 
       } catch (error) {
         console.error('Error adding entry:', error.response ? error.response.data : error.message);
         alert(`Failed to add entry: ${error.response ? error.response.data.error : error.message}`);
+      } finally{
+        setIsLoading(false);
       }
     } else {
       alert('Please fill out all fields in the entry form.');
@@ -39,11 +40,18 @@ const App = () => {
   };
 
   const handleCloseModal = () => {
-    setShowModal(false); // Close the modal
+    setShowModal(false); 
   };
 
   return (
     <div>
+      {/* Loading Overlay */}
+      {isLoading && (
+        <div className="loading-overlay">
+          <div className="loading-spinner"></div>
+          <p>Loading...</p>
+        </div>
+      )}
       {/* Title Bar */}
       <div className="title-bar">
         <img src="/Taxi_Icon.png" alt="Site Logo" className="logo" />
@@ -148,10 +156,10 @@ const App = () => {
               </thead>
               <tbody>
                 {entries.map((entry) => {
-                  // Create a new Date object from entry.time
+                  
                   const originalTime = new Date(entry.time);
                   
-                  // Adjust the time by subtracting 5 hours and 50 minutes
+                  
                   const adjustedTime = new Date(originalTime.getTime() - (5 * 60 * 60 * 1000) - (30 * 60 * 1000));
                   
                   return (
