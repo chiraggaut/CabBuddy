@@ -124,16 +124,24 @@ const App = () => {
                 </tr>
               </thead>
               <tbody>
-                {entries.map((entry) => (
-                  <tr key={entry._id}>
-                    <td>{entry.name}</td>
-                    <td>{entry.phone}</td>
-                    <td>{new Date(entry.time).toLocaleString()}</td>
-                    <td>{entry.location}</td>
-                    <td>{entry.direction}</td>
-                    <td>{entry.city}</td> {/* Display the city */}
-                  </tr>
-                ))}
+                {entries.map((entry) => {
+                  // Create a new Date object from entry.time
+                  const originalTime = new Date(entry.time);
+                  
+                  // Adjust the time by subtracting 5 hours and 50 minutes
+                  const adjustedTime = new Date(originalTime.getTime() - (5 * 60 * 60 * 1000) - (30 * 60 * 1000));
+                  
+                  return (
+                    <tr key={entry._id}>
+                      <td>{entry.name}</td>
+                      <td>{entry.phone}</td>
+                      <td>{adjustedTime.toLocaleString()}</td> {/* Display the adjusted time */}
+                      <td>{entry.location}</td>
+                      <td>{entry.direction}</td>
+                      <td>{entry.city}</td> {/* Display the city */}
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
