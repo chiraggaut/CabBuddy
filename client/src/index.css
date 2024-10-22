@@ -1,0 +1,77 @@
+body {
+  background-color: #5481ad;
+  font-family: Arial, sans-serif; /* Add a nice font */
+}
+
+h1, h2 {
+  color: #ffffff; /* Change heading color for better contrast */
+  font-weight: bold; /* Make headings bold */
+  text-align: center; /* Center align headings */
+}
+
+.form-control {
+  border: 2px solid #007bff; /* Classic border color */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for form elements */
+  transition: all 0.3s; /* Smooth transition for focus effects */
+}
+
+.form-control:focus {
+  border-color: #0056b3; /* Darker border on focus */
+  box-shadow: 0 4px 20px rgba(0, 86, 179, 0.5); /* Enhanced shadow on focus */
+}
+
+.btn {
+  width: 100%;
+  margin-top: 10px; /* Add some margin to buttons */
+}
+
+.table {
+  margin-top: 20px;
+  background-color: #ffffff; /* Background color for table */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Ensures rounded corners apply */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect for the table */
+}
+
+.table thead {
+  background-color: #007bff; /* Header background color */
+  color: #ffffff; /* Header text color */
+  font-weight: bold; /* Bold text for headers */
+}
+
+.table th, .table td {
+  text-align: center; /* Center align text */
+  padding: 12px; /* Padding for table cells */
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f8f9fa; /* Light background for even rows */
+}
+
+.table tbody tr:hover {
+  background-color: #e9ecef; /* Change background on hover */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+.title-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #007bff; /* Background color */
+  color: #ffffff; /* Text color */
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 1000; /* Ensure it appears above other content */
+}
+.logo {
+  height: 40px; /* Adjust logo size */
+  margin-right: 15px; /* Space between logo and site name */
+}
+.site-name {
+  margin: 0; /* Remove default margin */
+  font-size: 1.5rem; /* Adjust font size */
+}
