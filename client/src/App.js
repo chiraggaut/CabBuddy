@@ -11,7 +11,7 @@ const App = () => {
 
   const fetchEntries = async () => {
     console.log('Fetching entries with filter:', filter);
-    const response = await axios.get('http://localhost:5000/api/entries', { params: filter });
+    const response = await axios.get('https://cabbuddy.onrender.com/api/entries', { params: filter });
     setEntries(response.data);
   };
 
@@ -19,7 +19,7 @@ const App = () => {
     e.preventDefault();
     if (formData.name && formData.phone && formData.time && formData.location) {
       try {
-        const response = await axios.post('http://localhost:5000/api/entries', formData);
+        const response = await axios.post('https://cabbuddy.onrender.com/api/entries', formData);
         console.log('Entry added:', response.data);
 
         // Clear the results table and form
