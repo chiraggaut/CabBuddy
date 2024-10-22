@@ -64,7 +64,15 @@ const App = () => {
                 </div>
               </div>
               <div className="form-group">
-                <input type="datetime-local" className="form-control mb-3" value={formData.time} onChange={(e) => setFormData({ ...formData, time: e.target.value })} required />
+                <label htmlFor="flight-timing" className="mb-1">Flight Timing</label>
+                <input
+                  type="datetime-local"
+                  id="flight-timing"
+                  className="form-control mb-3"
+                  value={formData.time}
+                  onChange={(e) => setFormData({ ...formData, time: e.target.value })}
+                  required
+                />
               </div>
               <div className="form-group">
                 <input type="text" className="form-control mb-3" placeholder="Location" value={formData.location} onChange={(e) => setFormData({ ...formData, location: e.target.value })} required />
@@ -87,12 +95,27 @@ const App = () => {
             <h2 className="text-center mb-4">Filter To Find Your Buddy</h2>
             <div className="mb-4">
               <div className="form-row">
-                <div className="form-group col-md-6">
-                  <input type="datetime-local" className="form-control" onChange={(e) => setFilter({ ...filter, datetime: e.target.value })} required />
-                </div>
-                <div className="form-group col-md-6">
-                  <input type="number" className="form-control" placeholder="Range (hours)" onChange={(e) => setFilter({ ...filter, range: e.target.value })} required />
-                </div>
+              <div className="form-group col-md-6">
+                <label htmlFor="filter-datetime" className="mb-1">Filter Date and Time</label>
+                <input
+                  type="datetime-local"
+                  id="filter-datetime"
+                  className="form-control"
+                  onChange={(e) => setFilter({ ...filter, datetime: e.target.value })}
+                  required
+                />
+              </div>
+              <div className="form-group col-md-6">
+                <label htmlFor="range-input" className="mb-1">Enter Range (+-)</label>
+                <input
+                  type="number"
+                  id="range-input"
+                  className="form-control"
+                  placeholder="Range (hours)"
+                  onChange={(e) => setFilter({ ...filter, range: e.target.value })}
+                  required
+                />
+              </div>
               </div>
               <div className="form-group">
                 <select className="form-control mb-3" onChange={(e) => setFilter({ ...filter, direction: e.target.value })}>
